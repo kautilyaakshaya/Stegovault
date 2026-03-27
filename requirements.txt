@@ -1,0 +1,6 @@
+pillow
+cryptography
+customtkinter
+numpy
+matplotlib
+tkinterdnd2
