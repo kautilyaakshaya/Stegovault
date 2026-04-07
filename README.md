@@ -1,288 +1,185 @@
 # 🔐 StegoVault Ultimate
 
-A modern **steganography + cryptography** tool that allows you to securely hide and retrieve data inside images with a professional graphical interface.
+StegoVault Ultimate is a secure steganography desktop application that allows users to hide encrypted data inside images while keeping them visually unchanged.
+
+It combines cryptography (AES-GCM) and steganography (LSB embedding) to provide both data secrecy and invisibility.
 
 ---
 
-# 📌 Overview
+## 🚀 Key Features
 
-**StegoVault Ultimate** combines two powerful security techniques:
-
-```
-1. Hides data (Steganography)
-2. Protects data (Cryptography)
-```
-
-It enables users to embed secret messages or files inside images in a way that is **invisible to the human eye**, while also encrypting the data so it cannot be accessed without the correct password.
+### 🔐 Security
+- AES-GCM encryption (confidentiality + integrity)
+- Password-based key derivation (PBKDF2)
+- Safe extraction with wrong-password detection
+- No partial or corrupted data leaks
 
 ---
 
-# 🚀 Features
-
-## 🔐 Core Features
-
-* Hide **text messages** inside images
-* Hide **files (any format)** inside images
-* Extract hidden data securely
-* AES-GCM encryption (strong, authenticated encryption)
-* Password-based security (PBKDF2 key derivation)
+### 📦 Data Handling
+- Hide text messages
+- Hide any type of file
+- Multi-file support
+- Original filename restoration
+- Built-in compression (zlib for higher capacity)
 
 ---
 
-## 🧬 Advanced Steganography
-
-* LSB (Least Significant Bit) embedding
-* Randomized pixel selection (password-based)
-* Multi-file container system
-* Filename preservation during extraction
-
----
-
-## 🧠 Security & Analysis
-
-* 🔍 Steganography detection (basic analysis)
-* 🔥 Heatmap visualization of hidden regions
-* 🧪 Wrong password detection (safe failure, no crash)
+### 🧬 Steganography Engine
+- 2-bit LSB embedding (higher capacity)
+- Deterministic pixel shuffling using SHA-256
+- Length-header encoding (prevents corruption)
+- Exact bit-level extraction
 
 ---
 
-## 🎨 User Interface
-
-* Modern GUI using CustomTkinter
-* Drag & Drop image support
-* Image preview (original vs stego)
-* Password strength indicator
-* Alerts and status messages
-* Reset and Exit controls
+### 🎨 User Interface
+- Modern GUI using CustomTkinter
+- Drag & Drop support
+- Image preview before and after embedding
+- Alerts after completion
+- Reset and Exit buttons
 
 ---
 
-# 🛠 Installation
-
-## 1. Clone the Repository
-
-```bash
-git clone <your-repo-link>
-cd StegoVault
-```
+### 🧠 Analysis Tools
+- Basic steganography detection
+- Heatmap visualization of modified pixels
 
 ---
 
-## 2. Install Dependencies
+## ⚙️ How It Works
 
-```bash
-pip install -r requirements.txt
-```
+User Data  
+↓  
+Compression (zlib)  
+↓  
+AES-GCM Encryption  
+↓  
+Length Header Added  
+↓  
+Bitstream Conversion  
+↓  
+Pixel Shuffling (password-based)  
+↓  
+2-bit LSB Embedding  
+↓  
+Stego Image  
 
 ---
-
-## 3. Run the Application
-
-```bash
-python main.py
-```
-
----
-
-# 📁 Project Structure
+## 📁 Project Structure
 
 ```
 StegoVault/
 │
-├── main.py                # Entry point
+├── main.py
 ├── requirements.txt
+├── README.md
 │
-├── core/                 # Core functionality
-│   ├── crypto.py         # Encryption logic
-│   ├── stego_engine.py   # Data hiding & extraction
-│   ├── container.py      # Multi-file handling
+├── core/
+│   ├── crypto.py        # Encryption + compression (AES-GCM)
+│   ├── stego_engine.py  # Data hiding & extraction logic
+│   ├── container.py     # File packing/unpacking
 │
-├── analysis/             # Advanced tools
-│   ├── detector.py       # Hidden data detection
-│   ├── heatmap.py        # Visualization
+├── analysis/
+│   ├── detector.py      # Steganography detection
+│   ├── heatmap.py       # Visualization of modified pixels
 │
-├── ui/                   # User Interface
-│   └── gui.py
-│
-├── utils/                # Utility functions
-│   └── capacity.py
+├── ui/
+│   └── gui.py           # Graphical User Interface
 ```
 
----
+## 🛠 Installation
 
-# 📖 User Manual
+1. Clone repository
+git clone https://github.com/YOUR_USERNAME/StegoVault.git
+cd StegoVault
 
-## 🔹 Step 1: Select Image
+2. Install dependencies
+pip install -r requirements.txt
 
-* Click **“Select Image”** or drag & drop an image
-* Supported formats: PNG, BMP, TIFF
-
----
-
-## 🔹 Step 2: Add Data
-
-### Option A: Add File
-
-* Click **“Add File”**
-* Select any file to hide
-
-### Option B: Enter Text
-
-* Type your message in the text box
-* It will be stored as a file internally
+3. Run application
+python main.py
 
 ---
 
-## 🔹 Step 3: Enter Password
+## 📖 User Guide
 
-* Provide a secure password
-* This will be used to encrypt and protect the data
+### Hide Data
+1. Select an image (PNG/BMP)
+2. Add text or files
+3. Enter password
+4. Click "Hide"
+5. Save output image
 
----
+### Extract Data
+1. Select stego image
+2. Enter password
+3. Choose output folder
+4. Extract files
 
-## 🔹 Step 4: Hide Data
-
-* Click **“Hide Data”**
-* Choose output image location
-* A new image will be created with hidden data
-
----
-
-## 🔹 Step 5: Extract Data
-
-* Select the stego image
-* Enter correct password
-* Choose folder to save extracted files
-
----
-
-## 🔹 Additional Tools
-
-### 🔍 Analyze Image
-
-* Detects if image may contain hidden data
-
-### 🔥 Heatmap
-
-* Shows visual differences between original and stego image
-
-### 🔄 Reset
-
-* Clears all inputs
-
-### ❌ Exit
-
-* Closes application
+### Additional Tools
+- Analyze → detect hidden data
+- Heatmap → visualize changes
+- Reset → clear fields
+- Exit → close application
 
 ---
 
-# 📊 Data Capacity
+## 📊 Capacity
 
-The amount of data you can hide depends on image size.
-
-### Approximate limits:
-
-| Image Size | Data Capacity |
-| ---------- | ------------- |
-| 512×512    | ~50–80 KB     |
-| 1024×1024  | ~200–300 KB   |
-| 2048×2048  | ~1–2 MB       |
+512×512 image → ~100–150 KB  
+1024×1024 image → ~400–600 KB  
+2048×2048 image → ~2–3 MB  
 
 ---
 
-# ⚠️ Limitations
+## ⚠️ Limitations
 
-## 📦 Data Size Limit
-
-* Large files require large images
-* Exceeding capacity causes failure
-
----
-
-## 🖼 Image Restrictions
-
-* Only lossless formats supported (PNG, BMP)
-* JPEG is **not safe** (data loss due to compression)
+- Works best with PNG or BMP images
+- JPEG is not supported (compression destroys data)
+- Resizing or editing the image corrupts hidden data
+- Large data requires larger images
+- Not resistant to advanced forensic tools
+- Password cannot be recovered if forgotten
 
 ---
 
-## 🔍 Detectability
+## 🎯 Use Cases
 
-* Advanced steganalysis tools may detect hidden data
-* Built-in detector is **not 100% accurate**
-
----
-
-## 🧪 Fragility
-
-Hidden data may be lost if image is:
-
-* Resized
-* Compressed
-* Edited
-* Re-saved
+- Secure communication
+- Privacy protection
+- Cybersecurity learning
+- Data hiding experiments
+- Academic projects
 
 ---
 
-## 🔐 Security Limitations
+## 🏆 Highlights
 
-* Weak passwords reduce security
-* Not resistant to advanced forensic attacks
-
----
-
-## 📦 File Limitations
-
-* File metadata (timestamps, permissions) not preserved
-* Folder structure not maintained
+- Combines cryptography + steganography
+- Handles corruption and wrong-password cases safely
+- Modular and clean architecture
+- High-capacity embedding system
 
 ---
 
-# 🎯 Use Cases
+## 🧠 Future Improvements
 
-* Secure communication
-* Digital watermarking
-* Privacy protection
-* Cybersecurity learning
-* Data hiding experiments
-
----
-
-# 🏆 Project Strength
-
-```
-✔ Strong academically
-✔ Strong for interviews
-❌ Not production-secure (yet)
-```
+- Error correction (Reed-Solomon)
+- Anti-detection techniques
+- Web version
+- AI-based steganalysis
+- Video/audio support
 
 ---
 
-# 🧠 Future Improvements
+## 📜 License
 
-* Data compression (increase capacity)
-* Stronger anti-detection techniques
-* Web-based interface
-* AI-based steganalysis
-* Folder structure preservation
+For educational and research purposes only.
 
 ---
 
-# 📜 License
+## 💬 Summary
 
-This project is for educational and research purposes.
-
----
-
-# 💬 Final Summary
-
-StegoVault Ultimate is a complete system that:
-
-* Hides data inside images
-* Encrypts it securely
-* Allows safe retrieval
-* Provides analysis and visualization tools
-
-All in a single, easy-to-use application.
-
----
+StegoVault Ultimate is a powerful project demonstrating how encrypted data can be securely hidden inside images, making it highly relevant for cybersecurity and software engineering.
